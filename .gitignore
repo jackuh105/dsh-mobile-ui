@@ -1,0 +1,6 @@
+# Local development artifacts
+test.mjs
+dom-dump.html
+
+# Node / pnpm
+node_modules/

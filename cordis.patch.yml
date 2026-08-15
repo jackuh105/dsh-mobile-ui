@@ -1,0 +1,4 @@
+# Bundle patch layer for dsh-mobile-ui: declares its own loader entry.
+- insert:
+    - id: dsh-mobile-ui
+      name: dsh-mobile-ui

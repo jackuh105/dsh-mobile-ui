@@ -1,0 +1,14 @@
+{
+  "name": "dsh-mobile-ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Responsive CSS overrides for the DSH web settings panel on small screens",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
