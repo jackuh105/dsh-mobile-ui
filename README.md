@@ -21,7 +21,7 @@ Desktop / tablet (>680px) is unaffected.
 ### From GitHub
 
 ```powershell
-dsh plugin --profile web add https://github.com/jackuh105/dsh-mobile-ui.git
+dsh plugin --profile web add -w https://github.com/jackuh105/dsh-mobile-ui.git
 ```
 
 ### From a local checkout
@@ -29,7 +29,7 @@ dsh plugin --profile web add https://github.com/jackuh105/dsh-mobile-ui.git
 ```powershell
 git clone https://github.com/jackuh105/dsh-mobile-ui.git
 cd dsh-mobile-ui\..
-dsh plugin --profile web add .\dsh-mobile-ui
+dsh plugin --profile web add -w ./dsh-mobile-ui
 ```
 
 `dsh plugin` automatically adds this package to the web profile's bundle list because it declares `dsh.bundle`.
@@ -67,3 +67,14 @@ Edit the `CSS` string in `lib/index.js` (for example change the `680px` breakpoi
 ## Compatibility
 
 The CSS selectors currently target the settings panel structure of dsh `0.1.0-rc.6`. If dsh is upgraded and its class names change, the selectors may need to be updated.
+
+## Troubleshooting
+
+If `dsh plugin --profile web add` fails with `ERR_PNPM_ADDING_TO_ROOT`, add `-w` before the package spec:
+
+```powershell
+dsh plugin --profile web add -w https://github.com/jackuh105/dsh-mobile-ui.git
+```
+
+The dsh profile directory is a pnpm workspace root, and some pnpm versions require `-w` to install into it. `dsh plugin` forwards the flag verbatim to pnpm.
+

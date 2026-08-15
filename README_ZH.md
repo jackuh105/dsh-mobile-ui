@@ -21,7 +21,7 @@
 ### 從 GitHub 安裝
 
 ```powershell
-dsh plugin --profile web add https://github.com/jackuh105/dsh-mobile-ui.git
+dsh plugin --profile web add -w https://github.com/jackuh105/dsh-mobile-ui.git
 ```
 
 ### 從本機目錄安裝
@@ -29,7 +29,7 @@ dsh plugin --profile web add https://github.com/jackuh105/dsh-mobile-ui.git
 ```powershell
 git clone https://github.com/jackuh105/dsh-mobile-ui.git
 cd dsh-mobile-ui\..
-dsh plugin --profile web add .\dsh-mobile-ui
+dsh plugin --profile web add -w ./dsh-mobile-ui
 ```
 
 `dsh plugin` 會自動把有 `dsh.bundle` 宣告的本套件加進 web profile 的 bundles 清單。
@@ -67,3 +67,14 @@ dsh plugin --profile web remove dsh-mobile-ui
 ## 相容性
 
 目前 CSS 選擇器對應 dsh `0.1.0-rc.6` 的設定面板結構；未來升級 dsh 後若樣式類別名稱變更，可能需要同步調整。
+
+## 疑難排解
+
+如果 `dsh plugin --profile web add` 出現 `ERR_PNPM_ADDING_TO_ROOT`，請在套件規格前加上 `-w`：
+
+```powershell
+dsh plugin --profile web add -w https://github.com/jackuh105/dsh-mobile-ui.git
+```
+
+dsh profile 目錄本身是 pnpm workspace root，部分 pnpm 版本要求用 `-w` 才能安裝到該目錄；`dsh plugin` 會把這個旗標原封不動轉交給 pnpm。
+
