@@ -1,28 +1,30 @@
 # dsh-mobile-ui
 
-針對 DeepSeek Harness（dsh）Web 設定面板的小螢幕 CSS 覆寫外掛。
+English | [繁體中文](README_ZH.md)
 
-## 作用
+Responsive CSS override plugin for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) web settings panel.
 
-在 viewport ≤ 680px（手機瀏覽器）時：
+## What it does
 
-- 設定面板從「800px 寬、側邊 188px 導覽列」的桌面 Modal 改為**全螢幕直式版面**。
-- 左側設定導覽改為**頂部橫向可滑動 tab**，並佔滿整列寬度。
-- 關閉按鈕固定在設定視窗的**右上角**。
-- 內容區填滿剩餘高度、獨立捲動，並保留安全區（safe-area）內距。
-- General 設定列的內容允許換行，避免把控制項擠出畫面。
+On viewports ≤ 680px (mobile browsers), it:
 
-桌面 / 平板（>680px）完全不受影響。
+- Turns the 800px-wide desktop settings modal into a **full-screen vertical sheet**.
+- Converts the 188px left nav rail into a **full-width, horizontally scrollable tab bar** at the top.
+- Pins the **close button** to the top-right corner.
+- Makes the content area fill the remaining height with independent scrolling and safe-area padding.
+- Lets General settings rows wrap instead of squeezing their controls off-screen.
 
-## 安裝
+Desktop / tablet (>680px) is unaffected.
 
-### 從 GitHub 安裝
+## Install
+
+### From GitHub
 
 ```powershell
 dsh plugin --profile web add https://github.com/jackuh105/dsh-mobile-ui.git
 ```
 
-### 從本機目錄安裝
+### From a local checkout
 
 ```powershell
 git clone https://github.com/jackuh105/dsh-mobile-ui.git
@@ -30,38 +32,38 @@ cd dsh-mobile-ui\..
 dsh plugin --profile web add .\dsh-mobile-ui
 ```
 
-`dsh plugin` 會自動把有 `dsh.bundle` 宣告的本套件加進 web profile 的 bundles 清單。
+`dsh plugin` automatically adds this package to the web profile's bundle list because it declares `dsh.bundle`.
 
-安裝後重啟 web profile：
+Restart the web profile after installing:
 
 ```powershell
 dsh web
 ```
 
-如果你透過 Tailscale 等反向代理連入，請保留原本自己啟動 web 時使用的參數（例如 `--trusted-host`）。
+If you access the web UI through a reverse proxy such as Tailscale, keep your existing startup flags (for example `--trusted-host`).
 
-## 驗證
+## Verify
 
-在本機用瀏覽器開發者工具確認回傳的 HTML `<head>` 內有：
+Open the browser developer tools and confirm the returned HTML `<head>` contains:
 
 ```html
 <style id="dsh-mobile-ui">...</style>
 ```
 
-或直接縮小桌面瀏覽器視窗到 680px 以下，打開設定面板確認版面改變。
+Or narrow a desktop browser window below 680px and open the settings panel to see the layout change.
 
-## 移除
+## Uninstall
 
 ```powershell
 dsh plugin --profile web remove dsh-mobile-ui
 ```
 
-再重啟 dsh web 即可恢復原狀。
+Then restart `dsh web` to restore the original layout.
 
-## 微調
+## Tweak
 
-編輯 `lib/index.js` 內的 `CSS` 字串（例如把 `680px` 改成其他斷點），存檔後重啟 dsh web。
+Edit the `CSS` string in `lib/index.js` (for example change the `680px` breakpoint), then restart `dsh web`.
 
-## 相容性
+## Compatibility
 
-目前 CSS 選擇器對應 dsh `0.1.0-rc.6` 的設定面板結構；未來升級 dsh 後若樣式類別名稱變更，可能需要同步調整。
+The CSS selectors currently target the settings panel structure of dsh `0.1.0-rc.6`. If dsh is upgraded and its class names change, the selectors may need to be updated.
