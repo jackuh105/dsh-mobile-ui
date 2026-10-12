@@ -1,6 +1,6 @@
 {
   "name": "dsh-mobile-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Responsive CSS overrides for the DSH web settings panel on small screens",
@@ -10,5 +10,9 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-ui-settings-general": "^0.2.0-rc.2",
+    "@deepseek-ai/dsh-host-webserver": "^0.2.0-rc.2"
   }
 }
